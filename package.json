@@ -1,0 +1,66 @@
+{
+  "name": "steemhub",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@babel/core": "^7.22.11",
+    "@babel/runtime": "^7.22.11",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@headlessui/react": "^1.7.17",
+    "@hiveio/dhive": "https://github.com/faisalamin9696/dhive",
+    "@mui/material": "^5.14.6",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.43",
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.2.7",
+    "buffer": "^6.0.3",
+    "clsx": "^2.0.0",
+    "lodash": "^4.17.21",
+    "multihashes": "^4.0.3",
+    "querystring": "^0.2.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-headless-tabs": "^6.0.4",
+    "react-icons": "^4.10.1",
+    "react-intl": "^6.4.4",
+    "react-router-config": "^5.1.1",
+    "react-router-dom": "^6.15.0",
+    "react-scripts": "5.0.1",
+    "typescript": "^4.9.5",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/preset-react": "^7.22.5",
+    "@types/lodash": "^4.14.197",
+    "babel-preset-react-app": "^10.0.1",
+    "tailwindcss": "^3.3.3"
+  }
+}
