@@ -1,20 +1,27 @@
-import { Outlet, useParams } from 'react-router-dom';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { UserProfileHeader } from '../components/header/UserProfileHeader';
 import { UserProfile } from './UserProfile';
 import MainWrapper from '../../../components/wrapper/MainWrapper';
+import { useQuery } from 'react-query';
+import { getAccountExt } from '../../../libs/SteemApi';
 
 
 function UserPage({ home }: { home?: boolean }) {
-    const params = useParams();
-    const { category, username } = params;
+    const location = useLocation();
+    const urlArray = location.pathname.split('/');
+    const username = urlArray[1]?.replace('@', '');
+
+    const { isLoading, error, data } = useQuery({
+        queryKey: ['userData'],
+        queryFn: () => getAccountExt(username)
 
 
+    })
     const leftContent = (
-        <div>
-            <li>Location</li>
-            <li>Voting power</li>
-            <li>Vote value</li>
-            <li>RC</li>
+        <div className='flex flex-col'>
+            <div> {data?.upvote_mana_percent}% VP</div>
+            <div> {data?.upvote_mana_percent}% VP</div>
+            <div> {data?.rc_mana_percent}% RC</div>
         </div>
     )
 
@@ -24,7 +31,7 @@ function UserPage({ home }: { home?: boolean }) {
         </div>
     )
     return (
-        <UserProfileHeader>
+        <UserProfileHeader account={data!}>
             <MainWrapper leftContent={leftContent}
                 rightContent={rightContent}>
 

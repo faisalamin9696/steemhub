@@ -24,7 +24,7 @@ export default function MainWrapper(props: WrapperProps) {
 
                 {leftContent ? <div className='p-4
             hidden 
-            w-[180px] float-left border rounded border-solid border-gray-500
+            w-[180px] float-left border rounded border-solid  dark:border-gray-500
             lg:block 
             !min-h-[150px] sticky self-start items-start top-[70px]'>
                     <div className=''>

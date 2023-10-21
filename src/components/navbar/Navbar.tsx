@@ -34,15 +34,14 @@ export default function Navbar(props: NavbarProps) {
 
     return (<div className='w-full flex flex-col'>
         <div className='w-full  flex z-10'>
-            <Disclosure as="nav" className={clsx("w-full fixed !z-1050",
-                dark ? 'bg-slate-800' : 'bg-white')}>
+            <Disclosure as="nav" className={clsx("bg-blue-600 w-full fixed !z-1050 dark:bg-slate-800")}>
                 {({ open }) => (
                     <>
                         <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
                             <div className="relative flex h-16 items-center justify-between">
                                 <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                                     <Disclosure.Button className="relative inline-flex items-center justify-center
-                                 rounded-md p-2 text-gray-400 hover:bg-gray-700
+                                 rounded-md p-2 text-white dark:text-gray-400 hover:bg-gray-700
                                  hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                                         <span className="absolute -inset-0.5" />
                                         {open ? (
@@ -57,7 +56,7 @@ export default function Navbar(props: NavbarProps) {
                                         <img
                                             className="h-8 w-auto"
                                             src="/images/steempro_text_logo.png"
-                                            alt="SteemGo"
+                                            alt="SteemPro"
                                         />
                                     </div>
                                     <div className="hidden sm:ml-6 sm:block">
@@ -67,9 +66,9 @@ export default function Navbar(props: NavbarProps) {
                                                     onClick={() => {
                                                         setActivePage(item.value);
                                                     }}
-                                                    className={clsx(item.current ? dark ? 'bg-gray-200 text-black' :
-                                                        'bg-gray-900 text-white' :
-                                                        'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                                    className={clsx(item.current ? `bg-slate-700 text-white 
+                                                    dark:bg-gray-200 dark:text-black` :
+                                                        'bg-gray-500 text-gray-200  hover:bg-slate-700 hover:text-white',
                                                         'rounded-md px-3 py-2 text-sm font-medium')}
                                                     aria-current={item.current ? 'page' : undefined}
                                                     key={item.name}
@@ -84,7 +83,7 @@ export default function Navbar(props: NavbarProps) {
                                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                                     <button
                                         type="button"
-                                        className={clsx(dark ? 'bg-gray-800 hover:text-white ' : 'bg-gray-200 hover:text-gray-800',
+                                        className={clsx('dark:bg-gray-800 dark:hover:text-white bg-gray-200 hover:text-gray-800',
                                             `relative rounded-full  p-1 text-gray-400
                                          
                                         focus:outline-none focus:ring-2
@@ -116,13 +115,13 @@ export default function Navbar(props: NavbarProps) {
                                             <Menu.Items className={clsx(`absolute right-0 z-10 mt-2 w-48 
                                             origin-top-right rounded-md  py-1 
                                             shadow-lg ring-1  ring-opacity-5
-                                             focus:outline-none`, dark ? 'bg-gray-600 ring-white ' : 'bg-white ring-black')}>
+                                             focus:outline-none`, 'dark:bg-gray-600 ring-white bg-white ring-black')}>
                                                 <Menu.Item>
                                                     {({ active }) => (
                                                         <a
                                                             href="#"
-                                                            className={clsx(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm',
-                                                                dark ? 'text-gray-100' : 'text-gray-700')}
+                                                            className={clsx(active ? 'text-black bg-gray-100' : '', 'block px-4 py-2 text-sm',
+                                                                'dark:text-gray-100 text-gray-700')}
                                                         >
                                                             Your Profile
                                                         </a>

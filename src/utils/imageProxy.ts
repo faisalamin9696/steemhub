@@ -1,7 +1,7 @@
 import multihash from 'multihashes';
 import querystring from 'querystring';
 import { AppStrings } from '../constants/AppStrings';
-import {Buffer} from 'buffer';
+import { Buffer } from 'buffer';
 
 let proxyBase = AppStrings.image_hosting[0];
 
@@ -39,8 +39,8 @@ export const proxifyImageSrc = (
 
     // skip images already proxified with images.hive.blog
     if (
-        url.indexOf('https://steemitimages.com/') === 0 &&
-        url.indexOf('https://steemitimages.com/D') !== 0
+        url?.indexOf('https://steemitimages.com/') === 0 &&
+        url?.indexOf('https://steemitimages.com/D') !== 0
     ) {
         return url.replace('https://images.hive.blog', proxyBase);
     }

@@ -1,14 +1,17 @@
-import UserPage, { UserProfile } from '../user'
+import UserPage from '../pages/user'
 import { Route, Routes } from 'react-router-dom';
-import BlogCard from '../../components/card/BlogsCard';
-import MiddleWare from '../../navigation/MiddleWare';
+import MiddleWare from '../navigation/MiddleWare';
 import Card from '@mui/material/Card';
-import DashboardPage from '../dashboard';
+import DashboardPage from '../pages/dashboard';
+import PostingPage from '../pages/posting';
 
 
 export default function AppRoutes() {
     return <Routes>
         <Route path='/' Component={DashboardPage} />
+
+        <Route path='/submit' Component={PostingPage} />
+
 
         {/* use cases
         trendings/(tag, community)

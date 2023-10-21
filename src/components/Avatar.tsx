@@ -1,4 +1,4 @@
-import { getResizedAvatar } from "../utils/imageApi"
+import { getResizedAvatar } from "../utils/helpers/image"
 
 export default function Avatar({ username, quality, size }: {
     username: string,

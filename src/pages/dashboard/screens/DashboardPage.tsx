@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import { getDiscussionBy } from '../../../libs/Condensor'
-import { Discussion } from '@hiveio/dhive';
+import { useState } from 'react'
 import BlogCard from '../../../components/card/BlogsCard';
 import MainWrapper from '../../../components/wrapper/MainWrapper';
-
+import { getActivePostsBy } from '../../../libs/SteemApi';
+import './Editor.less'
+import { useQuery } from 'react-query';
 function DashboardPage() {
-    const [data, setData] = useState<Discussion[]>();
+    const [rows, setRows] = useState<Feed[]>();
+    const { data } = useQuery({
+        queryKey: 'trendings-posts',
+        queryFn: () => getActivePostsBy('Trending'),
+        onSuccess(data) {
+            setRows(data);
+        },
+    })
 
-    const fetchDiscussion = async () => {
-        const data = await getDiscussionBy('faisalamin', 'faisalamin');
-        if (data) { setData(data); }
-
-    }
-
-    
 
     const leftContent = (
         <div>
@@ -30,19 +30,16 @@ function DashboardPage() {
         </div>
     )
 
-    useEffect(() => {
-        fetchDiscussion();
-
-    }, []);
 
     return (
-        <div>
+        <div >
             <MainWrapper leftContent={leftContent}
                 rightContent={rightContent}>
-
-                {data ? data.map(comment => (
-                    <BlogCard comment={comment} />
-                )) : null}
+                <div className='p-1'>
+                    {data?.map(comment => (
+                        <BlogCard comment={comment} />
+                    ))}
+                </div>
             </MainWrapper>
 
 

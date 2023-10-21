@@ -1,33 +1,38 @@
 import Avatar from '../Avatar'
 import Reputation from '../Reputation'
-import { catchImageFromMetadata, getProxyImageURL } from '../../utils/imageApi'
 import Card from '@mui/material/Card'
-import { Discussion } from '@hiveio/dhive'
 import Tag from '../Tag'
+import { FormattedRelativeTime } from 'react-intl'
+import { selectUnit } from '@formatjs/intl-utils'
+import BodyShort from '../story/BodyShort'
+import { getProxyImageURL } from '../../utils/helpers/image'
+import TimeAgoWrapper from '../wrapper/TimeAgoWrapper'
+
 
 interface BlogProps {
-    comment: Discussion;
+    comment: Feed | Post;
 }
 export default function BlogCard(props: BlogProps) {
     const { comment } = props;
-    const thumbnail = catchImageFromMetadata(comment.json_metadata);
+    const thumbnail = JSON.parse(comment.json_images ?? '{}')[0] ?? undefined;
 
     return (
-        <Card className='!bg-inherit !text-inherit !m-0'>
+        <Card className='!bg-inherit !text-inherit m-0 !mb-4'>
             <div className='flex flex-col items-start'>
                 <div className='p-4 flex flex-col w-full'>
                     <div className='  items-center flex flex-row space-x-2'>
-                        <Avatar username='faisalamin' />
+                        <Avatar username={comment.author} />
                         <div className='flex flex-col w-full  '>
                             <div className=' flex flex-row items-center space-x-2 '>
                                 <p>{comment.author}</p>
-                                <Reputation reputation={comment.author_reputation} />
-                                <div className='!ml-auto bg-slate-600 rounded px-2 hover:bg-slate-500 cursor-pointer'>
+                                <Reputation reputation={comment.author_reputation} decimal={2} />
+                                <div className='!ml-auto  bg-slate-400 dark:bg-slate-600  text-white rounded px-2 
+                                hover:bg-slate-500 cursor-pointer'>
                                     <Tag comment={comment} />
                                 </div>
                             </div>
+                            <TimeAgoWrapper date={comment.created * 1000} />
 
-                            <time className='text-sm'>{comment.created}</time>
 
                         </div>
                     </div>
@@ -40,7 +45,7 @@ export default function BlogCard(props: BlogProps) {
 
                 <div className='p-4 flex flex-col'>
 
-                    <p className='text-sm'>{comment.body.substring(0, 250)}</p>
+                    <BodyShort body={comment.body} />
 
 
                 </div>

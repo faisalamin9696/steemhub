@@ -1,7 +1,7 @@
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import { useState } from 'react'
-import { Link, useParams } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 
 interface LinkTabProps {
@@ -12,11 +12,11 @@ interface LinkTabProps {
 }
 
 const homeTabs = (slug: string) => [
-    { label: 'Discussion', value: 'blogs', href: `/${slug}` },
-    { label: 'Comments', value: 'comments', href: `/${slug}/comments` },
-    { label: 'Followers', value: 'followers', href: `/${slug}/followers` },
-    { label: 'Followings', value: 'followings', href: `/${slug}/followings` },
-    { label: 'Wallet', value: 'wallet', href: `/${slug}/wallet` },
+    { label: 'Discussion', value: '', href: `/@${slug}/posts` },
+    { label: 'Comments', value: 'comments', href: `/@${slug}/comments` },
+    { label: 'Followers', value: 'followers', href: `/@${slug}/followers` },
+    { label: 'Followings', value: 'followings', href: `/@${slug}/followings` },
+    { label: 'Wallet', value: 'wallet', href: `/@${slug}/wallet` },
 
 ]
 
@@ -39,11 +39,14 @@ function LinkTab(props: LinkTabProps) {
 }
 
 function UserProfileTabs() {
-    const params = useParams();
-    const { category: username } = params
+    const location = useLocation();
+    const urlArray = location.pathname.split('/');
+    const username = urlArray[1]?.replace('@', '') ?? '';
+    const category = urlArray[2];
 
 
-    const [tabValue, setTabValue] = useState('blogs');
+    const [tabValue, setTabValue] = useState(category?.replace('posts', '') ?? '');
+
     const handleTabChange = (value: string) => {
         setTabValue(value);
     };
@@ -54,7 +57,7 @@ function UserProfileTabs() {
             display: "flex",
             justifyContent: "space-between",
         },
-       
+
 
     };
 
@@ -69,7 +72,7 @@ function UserProfileTabs() {
                         sm:ml-0 lg:w-full !h-[46px] ' value={tabValue}
 
                     >
-                        {homeTabs(username!).map((tab, index) => {
+                        {homeTabs(username ?? '').map((tab, index) => {
                             return <LinkTab
                                 handleOnClick={handleTabChange}
 

@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router-dom'
 import UserPage from '../pages/user';
 import { isCommunity } from '../utils/steemUtils';
+import CommunityPage from '../pages/community';
 
 export default function MiddleWare() {
     const location = useLocation();
@@ -11,10 +12,10 @@ export default function MiddleWare() {
     const _isPost = urlLength === 4;
 
     if (_isUser) {
-        return <UserPage home={urlLength <= 2} />;
+        return <UserPage home={urlLength <= 2 || urlArray[2] === 'posts'} />;
     }
     if (_isCommunity) {
-        return <div>Community</div>
+        return <CommunityPage />
     }
 
     if (_isPost) {
